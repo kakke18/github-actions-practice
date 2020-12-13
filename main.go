@@ -19,14 +19,14 @@ func main() {
 	// 送信データを生成
 	data, err := json.Marshal(payload{Text: "test"})
 	if err != nil {
-		fmt.Printf("[Error] %v.¥n", err.Error())
+		fmt.Printf("[Error] failed marshal. err=%s\n", err.Error())
 		return
 	}
 
 	// POST
 	resp, err := http.PostForm(webhookURL, url.Values{"payload": {string(data)}})
 	if err != nil {
-		fmt.Printf("[Error] %v.¥n", err.Error())
+		fmt.Printf("[Error] failed post form. err=%s\n", err.Error())
 		return
 	}
 	defer resp.Body.Close()
